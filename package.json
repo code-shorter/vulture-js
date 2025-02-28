@@ -1,8 +1,8 @@
 {
   "name": "vulture-js",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "A minimal and robust form validation library",
-  "main": "src/index.js",
+  "main": "dist/vulture.min.js",
   "module": "src/index.js",
   "types": "src/index.d.ts",
   "scripts": {
@@ -23,9 +23,14 @@
   "license": "MIT",
   "type": "module",
   "files": [
+    "dist",
     "src",
     "README.md",
     "LICENSE"
   ],
+  "exports": {
+    "import": "./src/index.js",
+    "require": "./dist/vulture.min.js"
+  },
   "homepage": "https://github.com/code-shorter/vulture-js#readme"
 }
