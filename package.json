@@ -1,9 +1,10 @@
 {
   "name": "vulture-js",
-  "version": "1.1.1",
+  "version": "1.1.3",
   "description": "A minimal and robust form validation library",
-  "main": "dist/vulture.min.js",
-  "module": "src/index.js",
+  "main": "dist/vulture.cjs.js",  
+  "module": "dist/vulture.esm.js",  
+  "browser": "dist/vulture.min.js",  
   "types": "src/index.d.ts",
   "scripts": {
     "build": "rollup -c"
@@ -29,8 +30,9 @@
     "LICENSE"
   ],
   "exports": {
-    "import": "./src/index.js",
-    "require": "./dist/vulture.min.js"
+    "import": "./dist/vulture.esm.js",
+    "require": "./dist/vulture.cjs.js",
+    "browser": "./dist/vulture.min.js"
   },
   "homepage": "https://github.com/code-shorter/vulture-js#readme",
   "devDependencies": {

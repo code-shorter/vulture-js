@@ -21,7 +21,7 @@ npm install vulture-js
 
 ### Using CDN:
 ```html
-<script src="https://cdn.jsdelivr.net/npm/vulture-js/dist/vulture.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vulture-js@latest/dist/vulture.min.js"></script>
 ```
 
 ---
