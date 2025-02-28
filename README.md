@@ -16,12 +16,12 @@
 
 ### Using npm:
 ```bash
-npm install vulture.js
+npm install vulture-js
 ```
 
 ### Using CDN:
 ```html
-<script src="https://cdn.jsdelivr.net/npm/vulture.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vulture-js"></script>
 ```
 
 ---
@@ -30,7 +30,7 @@ npm install vulture.js
 
 ### Import Vulture.js
 ```js
-import vulture from "vulture.js";
+import vulture from "vulture-js";
 ```
 
 ### Single Form Connection
@@ -68,7 +68,7 @@ forms.forEach((f, i) => {
 | Option           | Type    | Default | Description |
 |-----------------|---------|---------|-------------|
 | `strict`        | Boolean | `true`  | Enables strict validation rules. |
-| `augment`       | Array   | `true`  | Enables adding more fields to the priority list. |
+| `augment`       | Array   | `null`  | Enables adding more fields to the priority list. |
 | `render_error`  | Boolean | `true`  | Displays error messages below invalid fields. |
 
 ---
@@ -89,7 +89,7 @@ Contributions are welcome! Feel free to submit issues and pull requests.
 
 ### Steps to Contribute:
 1. Fork the repository.
-2. Clone the repo: `git clone https://github.com/codeshorter/vulture.js.git`
+2. Clone the repo: `git clone https://github.com/code-shorter/vulture-js.git`
 3. Create a new branch: `git checkout -b feature-branch`
 4. Commit your changes: `git commit -m "Add new feature"`
 5. Push to your branch: `git push origin feature-branch`
@@ -104,8 +104,8 @@ Contributions are welcome! Feel free to submit issues and pull requests.
 
 ## 🌐 Links & Resources
 - **Documentation:** [https://vulturejs.github.io](https://vulturejs.github.io)
-- **GitHub:** [https://github.com/yourusername/vulture.js](https://github.com/yourusername/vulture.js)
-- **NPM:** [https://www.npmjs.com/package/vulture.js](https://www.npmjs.com/package/vulture.js)
+- **GitHub:** [https://github.com/code-shorter/vulture-js](https://github.com/code-shorter/vulture-js)
+- **NPM:** [https://www.npmjs.com/package/vulture-js](https://www.npmjs.com/package/vulture-js)
 
 ---
 
