@@ -1,0 +1,31 @@
+{
+  "name": "vulture-js",
+  "version": "1.0.0",
+  "description": "A minimal and robust form validation library",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "types": "src/index.d.ts",
+  "scripts": {
+    "build": "echo 'No build step needed'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/codeshorter/vulture-js.git"
+  },
+  "keywords": [
+    "form-validation",
+    "javascript",
+    "vulture-js",
+    "validation",
+    "data-validation"
+  ],
+  "author": "Anmol Shrivastav",
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "homepage": "https://github.com/codeshorter/vulture-js#readme"
+}

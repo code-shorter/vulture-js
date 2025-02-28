@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VultureJS Usages Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+            font-size: 0.875em;
+            margin-top: -10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>VultureJS Usages Example</h1>
+        <!-- Form 1 -->
+        <form action="" id="user-form" class="myForm">
+            <!-- Correctly write fields name -->
+            <label for="firstname">First Name:</label>
+            <input type="text" id="firstname-inp" name="firstname">
+            <!-- Write error in div class name and input field name in div id (for correctly displaying errors) -->
+            <div id="firstname" class="error"></div>
+
+            <label for="lastname">Last Name:</label>
+            <input type="text" id="lastname-inp" name="lastname">
+            <div id="lastname" class="error"></div>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email-inp" name="email">
+            <div id="email" class="error"></div>
+
+            <label for="tags">Tags:</label>
+            <input type="text" id="tag-inp" name="tags" class="tag-inp">
+            <div id="tags" class="error"></div>
+
+            <label for="description">About:</label>
+            <textarea name="about" id="about-inp" class="about-inp"></textarea>
+            <div id="about" class="error"></div>
+            <input type="submit" value="Submit">
+        </form>
+        <!-- Form 2 -->
+        <form action="" id="comment-form" class="myForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username-inp" name="username">
+            <div id="username" class="error"></div>
+
+            <label for="comment">Comment:</label>
+            <textarea name="comment" id="comment-inp" class="comment-inp"></textarea>
+            <div id="comment" class="error"></div>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
