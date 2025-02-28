@@ -12,26 +12,17 @@
 
 ---
 
-## 📦 Installation
+## 📦 How to Use
 
-### Using npm:
-```bash
-npm install vulture-js
-```
-
-### Using CDN:
+### By CDN:
 ```html
 <script src="https://cdn.jsdelivr.net/npm/vulture-js@latest/dist/vulture.min.js"></script>
 ```
+NOTE: `vulture-js` is only available for browser that support CDN method.
 
 ---
 
 ## 🔧 Usage
-
-### Import Vulture.js
-```js
-import vulture from "vulture-js";
-```
 
 ### Single Form Connection
 ```js
@@ -137,6 +128,39 @@ NOTE: For Displaying error correctly write `error` in div class name and input f
     <div id="username" class="error"></div>
     <button type="submit">Submit</button>
 </form>
+```
+
+## Full Code
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vulture.js Example</title>
+</head>
+<body>
+
+    <form id="user-form">
+        <input type="text" name="username">
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Include Vulture.js just before closing body -->
+    <script src="https://cdn.jsdelivr.net/npm/vulture-js@latest/dist/vulture.min.js"></script>
+    <script>
+        vulture.connect("user-form");
+        document.querySelector("#user-form").addEventListener("submit", (e) => {
+            e.preventDefault();
+            const { fields, errors } = vulture.talon({ strict: true, render_error: true });
+
+            if (errors) return console.error(errors);
+            console.log(vulture.formatter(fields));
+        });
+    </script>
+
+</body>
+</html>
 ```
 
 ---
