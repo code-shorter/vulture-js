@@ -1,12 +1,12 @@
 {
   "name": "vulture-js",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A minimal and robust form validation library",
   "main": "dist/vulture.min.js",
   "module": "src/index.js",
   "types": "src/index.d.ts",
   "scripts": {
-    "build": "echo 'No build step needed'"
+    "build": "rollup -c"
   },
   "repository": {
     "type": "git",
@@ -32,5 +32,11 @@
     "import": "./src/index.js",
     "require": "./dist/vulture.min.js"
   },
-  "homepage": "https://github.com/code-shorter/vulture-js#readme"
+  "homepage": "https://github.com/code-shorter/vulture-js#readme",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.2",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "rollup": "^2.79.2",
+    "rollup-plugin-terser": "^7.0.2"
+  }
 }

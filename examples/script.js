@@ -1,5 +1,3 @@
-import vulture from "../src/index.js";
-
 // Single form connection
 vulture.connect("user-form"); // Auto detect form by ID or class name (Write without '#' and '.') (Only for single form connection)
 const form = document.querySelector("#user-form");

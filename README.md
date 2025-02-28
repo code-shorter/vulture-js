@@ -21,7 +21,7 @@ npm install vulture-js
 
 ### Using CDN:
 ```html
-<script src="https://cdn.jsdelivr.net/npm/vulture-js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vulture-js/dist/vulture.min.js"></script>
 ```
 
 ---
@@ -67,7 +67,7 @@ forms.forEach((f, i) => {
 ## 🎯 Options
 | Option           | Type    | Default | Description |
 |-----------------|---------|---------|-------------|
-| `strict`        | Boolean | `true`  | Enables strict validation rules. |
+| `strict`        | Boolean | `false` | Enables strict validation rules. |
 | `augment`       | Array   | `null`  | Enables adding more fields to the priority list. |
 | `render_error`  | Boolean | `true`  | Displays error messages below invalid fields. |
 
