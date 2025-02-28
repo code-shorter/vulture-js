@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/codeshorter/vulture-js.git"
+    "url": "https://github.com/code-shorter/vulture-js.git"
   },
   "keywords": [
     "form-validation",
@@ -27,5 +27,5 @@
     "README.md",
     "LICENSE"
   ],
-  "homepage": "https://github.com/codeshorter/vulture-js#readme"
+  "homepage": "https://github.com/code-shorter/vulture-js#readme"
 }
