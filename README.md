@@ -73,7 +73,64 @@ forms.forEach((f, i) => {
 
 ---
 
+### Use of augment
+By using it user can add more fields to the priority list.
+
+```js
+vulture.connect("myForm");
+
+const form = document.querySelector("#myForm");
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const { fields, errors } = vulture.talon({ strict: true, augment: ['tags', 'links'], render_error: true });
+    
+    if (errors) return console.error(errors);
+    console.log(fields);
+});
+```
+
+### How to directly store to the database ?
+By using `vulture.formatter()` you can send directly store to the database without any additional code.
+It convert Array of fields to form data Objects.
+
+```js
+vulture.connect("myForm");
+
+const form = document.querySelector("#myForm");
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const { fields, errors } = vulture.talon({ strict: true, render_error: true });
+    
+    if (errors) return console.error(errors);
+
+    // For formating the data
+    const data = vulture.formatter(fields);
+
+    console.log(data);
+    // Output by using formatter:-
+        // {
+        //     firstname: "Anmol",
+        //     lastname: "Shrivastav",
+        //     email: "example@gmail.com"
+        // }
+
+    // Send data to your backend
+    fetch('https://api.you-backend-url.com/user-form', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+    .catch(err => console.error(err));
+});
+```
+
 ## 📌 Example HTML Form
+NOTE: For Displaying error correctly write `error` in div class name and input field name (e.g. `username`) in div ID
+
 ```html
 <form id="myForm">
     <input type="text" id="username-inp" name="username" placeholder="Username">
