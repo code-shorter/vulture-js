@@ -24,7 +24,7 @@ const vulture = {
         form = document.getElementById(formId) || document.querySelector(`.${formId}`);
         let elem = Array.from(form.children).filter(e => (e.tagName === 'INPUT' || e.tagName === 'TEXTAREA') && !['submit', 'reset'].includes(e.type)).length;
         if (form)
-            console.log(`Connected to ${form.id || form.className}(${elem}) \nVisit https://vulturejs.github.io`)
+            console.log(`Vulture protection to ${form.id || form.className}(${elem}) \nVisit https://vulturejs.github.io`)
         else {
             console.error(`Form ID error: MultiConnect reduired Form ID,\nForm index: ${forms.length + 1} has no ID or Form IDs are more than forms.`);
         };
@@ -48,7 +48,7 @@ const vulture = {
             if (forms.length === formIds.length) break;
         }
         multiConnect = true;
-        if (approvedArray(formIds) && !error) console.log(`Connected to ${forms.map(form => {
+        if (approvedArray(formIds) && !error) console.log(`Vulture protection to ${forms.map(form => {
             return `${form.id}(${Array.from(form.children).filter(e => (e.tagName === 'INPUT' || e.tagName === 'TEXTAREA') && !['submit', 'reset'].includes(e.type)).length})`;
         }).join(', ')}\nVisit https://vulturejs.github.io`);
     },

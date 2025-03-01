@@ -92,6 +92,13 @@ function checkPasswordStrength(password) {
 // console.log(checkPasswordStrength("Qwerty123!@#")); // Very Strong
 // console.log(checkPasswordStrength("123456")); // Very Weak
 
+function requiredError(field) {
+    const camal = field.name[0].toLocaleUpperCase() + field.name.slice(1);
+    const separator = camal.replace(/[_-]/g, " ");
+
+    return `${separator} is required`;
+};
+
 /**
  * Validates an array of fields.
  * 
@@ -108,7 +115,7 @@ function validator(fields, strict) {
             field.value === undefined) {
             errors.push({
                 field: field.name,
-                message: `${field.name[0].toLocaleUpperCase() + field.name.slice(1)} is required`
+                message: requiredError(field)
             });
             break;
         };
