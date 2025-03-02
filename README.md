@@ -56,16 +56,17 @@ forms.forEach((f, i) => {
 ---
 
 ## 🎯 Options
-| Option           | Type    | Default | Description |
-|-----------------|---------|---------|-------------|
-| `strict`        | Boolean | `false` | Enables strict validation rules. |
-| `augment`       | Array   | `null`  | Enables adding more fields to the priority list. |
-| `render_error`  | Boolean | `true`  | Displays error messages below invalid fields. |
+| Option          | Type    | Default   | Description |
+|-----------------|---------|-----------|-------------|
+| `strict`        | Boolean | `false`   | Enables strict validation rules. |
+| `augment`       | Array   | `null`    | Enables adding more fields to the priority list. |
+| `render_error`  | Boolean | `true`    | Displays error messages below invalid fields. |
+| `minmax`        | Array   | `[2, 50]` | Set minimum & maximum length limit in fields containing `name` |
 
 ---
 
 ### Use of augment
-By using it user can add more fields to the priority list.
+By using `augment` you can add more fields to the priority list.
 
 ```js
 vulture.connect("myForm");
@@ -78,6 +79,14 @@ form.addEventListener("submit", (e) => {
     if (errors) return console.error(errors);
     console.log(fields);
 });
+```
+
+### Use of minmax
+By using `minmax` you can set minimum and maximum length limit in those fields which containting `name` (e.g. `fullname`, `username`, `first_name`).
+**NOTE**: `minmax` does not work in `strict: false`.
+
+```js
+const { fields, errors } = vulture.talon({ strict: true, render_error: true, minmax: [3, 25] });
 ```
 
 ### How to directly store to the database ?
@@ -120,7 +129,7 @@ form.addEventListener("submit", (e) => {
 ```
 
 ## 📌 Example HTML Form
-NOTE: For Displaying error correctly write `error` in div class name and input field name (e.g. `username`) in div ID
+**NOTE**: For Displaying error correctly write `error` in div class name and input field name (e.g. `username`) in div ID
 
 ```html
 <form id="myForm">

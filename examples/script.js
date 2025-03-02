@@ -1,4 +1,5 @@
 // Single form connection
+// console.log(vulture)
 vulture.connect("user-form"); // Auto detect form by ID or class name (Write without '#' and '.') (Only for single form connection)
 const form = document.querySelector("#user-form");
 
@@ -7,11 +8,12 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
 
     // Get form fields and errors using talon method
-    const { fields, errors } = vulture.talon({ strict: true, augment: ['tags'], render_error: true });
+    const { fields, errors } = vulture.talon({ strict: true, augment: ['tags'], render_error: true, minmax: [3, 25] });
     // There are three parameters in talon method:-
         // 1. strict: true (By default it is false) - It will strictly check the form fields, email, password and return errors
         // 2. augment: [''] (By default it is null) - By this you can add more fields to the priority list (e.g. tags, comment, link, etc.)
         // 3. render_error: true (By default it is true) - It will render error messages on the form
+        // 4. minmax: [3, 25] (By default it is [2, 50]) - Set minimum & maximum length limit in fields containing `name`
 
         // NOTE:- Field name containing "other" (e.g. other_email, othername) would not be consider as priority field
     

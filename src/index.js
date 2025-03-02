@@ -62,10 +62,9 @@ const vulture = {
      * @param {boolean} options.render_error - Whether to render error messages.
      * @returns {Object} An object containing validated fields and errors.
      */
-    talon: ({ strict, augment, render_error = true }) => {
+    talon: ({ strict, augment, render_error = true, minmax = [2, 50] }) => {
         if (!strict) strict = false;
         if (!augment) augment = null;
-        // if (multiConnect) form = form_data;
 
         // Scan the form to extract fields and error boxes
         const { scannedFields, errorBoxes } = scanner(form);
@@ -74,7 +73,7 @@ const vulture = {
         const { priority, non_priority } = prioritizer(scannedFields, { strict, augment });
 
         // Validate the prioritized fields
-        const { fields, errors } = validator(priority, strict);
+        const { fields, errors } = validator(priority, strict, minmax);
 
         // Render error messages if enabled
         if (render_error) renderError(errorBoxes, errors);

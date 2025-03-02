@@ -19,7 +19,7 @@ import { approvedArray, commonEmailProviders, commonPasswords, tempEmailDomains,
  * @returns {Object} An object containing the validation result and reason.
  */
 function isValidEmail(email, strict = false) {
-    if (typeof email !== "string" || email.length < 6 || email.length > 320) {
+    if (typeof email !== "string" || email.length < 6 || email.length > 255) {
         return { valid: false, reason: "Invalid email length" };
     }
 
@@ -106,7 +106,7 @@ function requiredError(field) {
  * @param {boolean} strict - Whether to strictly validate the fields.
  * @returns {Object} An array of errors or the original fields if no errors.
  */
-function validator(fields, strict) {
+function validator(fields, strict, minmax) {
     // let start = performance.now(); // performance ~ 0.7479000000000013 milliseconds
     let errors = [];
     for (const field of fields) {
@@ -126,6 +126,13 @@ function validator(fields, strict) {
         if (strict && field.type === "password") {
             const { strength, message } = checkPasswordStrength(field.value);
             if (strength.includes("Weak")) errors.push({ field: field.name, message });
+        }
+        if (strict && /name/i.test(field.name)) {
+            const { min, max } = { min: Array.from(minmax)[0], max: Array.from(minmax)[1] };
+            console.log(min, max);
+            const fieldName = requiredError(field).replace(" is required", "");
+            if (field.value.length < min) errors.push({ field: field.name, message: `${fieldName} must be at least ${min} characters` });
+            if (field.value.length > max) errors.push({ field: field.name, message: `${fieldName} must not be greater than ${max} characters` });
         }
     }
     if (approvedArray(fields)) {
