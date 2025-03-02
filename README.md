@@ -18,8 +18,9 @@
 ```html
 <script src="https://cdn.jsdelivr.net/npm/vulture-js@latest/dist/vulture.min.js"></script>
 ```
-**NOTE**: `vulture-js`  is currently available only for the browser, you can only connect to it with the help of CDN script.
-**Latest Version**: v1.1.7
+**NOTE**: `vulture-js`  is currently available only for the browser, you can only connect to it with the help of CDN script. Sometimes `@latest` not work as expected, so we recommend using the latest version.
+
+**Latest Version**: *v1.1.8*
 
 ---
 
@@ -62,7 +63,7 @@ forms.forEach((f, i) => {
 | `strict`        | Boolean | `false`   | Enables strict validation rules. |
 | `augment`       | Array   | `null`    | Enables adding more fields to the priority list. |
 | `render_error`  | Boolean | `true`    | Displays error messages below invalid fields. |
-| `minmax`        | Array   | `[2, 50]` | Set minimum & maximum length limit in fields containing `name` |
+| `minmax`        | Array   | `[2,50]`  | Set minimum & maximum length limit in fields containing `name` |
 
 ---
 
@@ -84,6 +85,7 @@ form.addEventListener("submit", (e) => {
 
 ### Use of minmax
 By using `minmax` you can set minimum and maximum length limit in those fields which containting `name` (e.g. `fullname`, `username`, `first_name`).
+
 **NOTE**: `minmax` does not work in `strict: false`.
 
 ```js
