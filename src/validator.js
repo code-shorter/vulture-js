@@ -104,6 +104,7 @@ function requiredError(field) {
  * 
  * @param {Array} fields - The array of fields to validate.
  * @param {boolean} strict - Whether to strictly validate the fields.
+ * @param {Array} minmax - The minimum and maximum length of the fields value.
  * @returns {Object} An array of errors or the original fields if no errors.
  */
 function validator(fields, strict, minmax) {
@@ -129,7 +130,6 @@ function validator(fields, strict, minmax) {
         }
         if (strict && /name/i.test(field.name)) {
             const { min, max } = { min: Array.from(minmax)[0], max: Array.from(minmax)[1] };
-            console.log(min, max);
             const fieldName = requiredError(field).replace(" is required", "");
             if (field.value.length < min) errors.push({ field: field.name, message: `${fieldName} must be at least ${min} characters` });
             if (field.value.length > max) errors.push({ field: field.name, message: `${fieldName} must not be greater than ${max} characters` });

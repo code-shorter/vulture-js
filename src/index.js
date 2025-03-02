@@ -60,6 +60,7 @@ const vulture = {
      * @param {boolean} options.strict - Whether to strictly validate fields.
      * @param {Array} options.augment - Additional fields to prioritize.
      * @param {boolean} options.render_error - Whether to render error messages.
+     * @param {Array} options.minmax - Whether to render error messages.
      * @returns {Object} An object containing validated fields and errors.
      */
     talon: ({ strict, augment, render_error = true, minmax = [2, 50] }) => {

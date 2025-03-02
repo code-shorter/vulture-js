@@ -19,6 +19,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vulture-js@latest/dist/vulture.min.js"></script>
 ```
 **NOTE**: `vulture-js`  is currently available only for the browser, you can only connect to it with the help of CDN script.
+**Latest Version**: v1.1.7
 
 ---
 
