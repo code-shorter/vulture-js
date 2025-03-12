@@ -46,25 +46,25 @@ function combiner({ fieldsGroup = [], fieldsToCombine = [], attributes = [], met
 }
 
 
-console.log(
-    combiner({
-        fieldsGroup: [
-            { name: 'first_name', type: 'text', value: 'Anmol' },
-            { name: 'last_name', type: 'text', value: 'Shrivastav' },
-            { name: 'cu_code', type: 'text', value: '+91' },
-            { name: 'phone_number', type: 'text', value: '917049XXXX' },
-            { name: 'email', type: 'email', value: 'example123@example.com' }
-        ],
-        fieldsToCombine: [
-            ['cu_code', 'phone_number'],
-            ['first_name', 'last_name']
-        ],
-        attributes: [
-            { name: 'phone_number', type: 'text' },
-            { name: 'full_name', type: 'text' }
-        ],
-        method: 'space'
-    })
-);
+// console.log(
+//     combiner({
+//         fieldsGroup: [
+//             { name: 'first_name', type: 'text', value: 'Anmol' },
+//             { name: 'last_name', type: 'text', value: 'Shrivastav' },
+//             { name: 'cu_code', type: 'text', value: '+91' },
+//             { name: 'phone_number', type: 'text', value: '917049XXXX' },
+//             { name: 'email', type: 'email', value: 'example123@example.com' }
+//         ],
+//         fieldsToCombine: [
+//             ['cu_code', 'phone_number'],
+//             ['first_name', 'last_name']
+//         ],
+//         attributes: [
+//             { name: 'phone_number', type: 'text' },
+//             { name: 'full_name', type: 'text' }
+//         ],
+//         method: 'space'
+//     })
+// );
 
 export default combiner;

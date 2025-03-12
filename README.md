@@ -20,7 +20,7 @@
 ```
 **NOTE**: `vulture-js`  is currently available only for the browser, you can only connect to it with the help of CDN script. Sometimes `@latest` not work as expected, so we recommend using the latest version.
 
-**Latest Version**: *v1.2.0*
+**Latest Version**: *v1.2.1*
 
 ---
 
