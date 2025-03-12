@@ -4,9 +4,12 @@
 
 ## 🚀 Features
 - **Simple Form Connection** – Easily connect single or multiple forms.
-- **Real-time Validation** – Handles empty fields, required inputs, and strict validation.
 - **Error Rendering** – Dynamically displays error messages below each field.
+- **Custom Error** – Handles empty fields, required inputs, and strict validation.
 - **Strict Mode** – Enables or disables advanced validation.
+- **Best Email validation** – Check email address strictly, does not allow temp or custom email.
+- **Data formatter** – Convert array of fields into JSON format.
+- **Field Combination** – Combine two fields into one.
 - **Regex-based Identification** – Smart field detection for various input types.
 - **Minimal Setup** – Quick integration with any JavaScript project.
 
@@ -16,11 +19,11 @@
 
 ### By CDN:
 ```html
-<script src="https://cdn.jsdelivr.net/npm/vulture-js@latest/dist/vulture.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vulture-js@1.2.2/dist/vulture.min.js"></script>
 ```
 **NOTE**: `vulture-js`  is currently available only for the browser, you can only connect to it with the help of CDN script. Sometimes `@latest` not work as expected, so we recommend using the latest version.
 
-**Latest Version**: *v1.2.1*
+**Latest Version**: *v1.2.2*
 
 ---
 
