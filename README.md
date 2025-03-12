@@ -58,16 +58,17 @@ forms.forEach((f, i) => {
 ---
 
 ## 🎯 Options
-| Option          | Type    | Default    | Description |
-|-----------------|---------|------------|-------------|
-| `strict`        | Boolean | `false`    | Enables strict validation rules. |
-| `augment`       | Array   | `null`     | Enables adding more fields to the priority list. |
-| `render_error`  | Boolean | `true`     | Displays error messages below invalid fields. |
-| `minmax`        | Array   | `[2,50]`   | Set minimum & maximum length limit in fields containing `name` |
-| `phoneRules`    | Array   | `[]`       | Set rules to validate phone number |
-| `combine`       | Object  | No default | Set rules to validate phone number |
+| Option         | Type    | Default  | Description                                           |
+|----------------|---------|----------|-------------------------------------------------------|
+| `strict`       | Boolean | `false`  | Enables strict validation rules.                      |
+| `augment`      | Array   | `null`   | Adds more fields to the priority list.                |
+| `render_error` | Boolean | `true`   | Displays error messages below invalid fields.         |
+| `minmax`       | Array   | `[2,50]` | Sets minimum & maximum length limits for fields containing `name`. |
+| `phoneRules`   | Array   | `[]`     | Sets rules to validate phone numbers.                 |
+| `combine`      | Object  | `null`   | Combines multiple fields into a single field.         |
 
 ---
+
 
 ### Use of augment
 By using `augment` you can add more fields to the priority list.
@@ -97,21 +98,21 @@ const { fields, errors } = vulture.talon({ strict: true, render_error: true, min
 ### Use of phoneRules
 By using `phoneRules`, you can set the format of phone numbers.
 
-
 ```js
-const { fields, errors } = vulture.talon({ strict: true, render_error: true, phoneRules: ["+", "space"] });
+const { fields, errors } = vulture.talon({ strict: true, render_error: true, phoneRules: ["+", "spaces"] });
 ```
 
-These are the options that are used to set the format of phone number:
-`[]` - Phone number format is XXXXXXXXXX
-`["+"]` - Phone number format is +XX XXXXXXXXXX
-`["spaces"]` - Phone number format is XXX XXX XXXX
-`["hyphens"]` - Phone number format is XXX-XXX-XXXX
-`["dots"]` - Phone number format is XXX.XXX.XXXX
-`["+", "spaces"]` - Phone number format is +XX XXX XXXX XXX, XXX XXXX XXX, +XXXXXXXXXXXX, XXXXXXXXXX
-// You can use more as your requirements
+These are the options that are used to set the format of phone numbers:
+- `[]` - Phone number format is XXXXXXXXXX
+- `["+"]` - Phone number format is +XX XXXXXXXXXX
+- `["spaces"]` - Phone number format is XXX XXX XXXX
+- `["hyphens"]` - Phone number format is XXX-XXX-XXXX
+- `["dots"]` - Phone number format is XXX.XXX.XXXX
+- `["+", "spaces"]` - Phone number format is +XX XXX XXXX XXX, XXX XXXX XXX, +XXXXXXXXXXXX, XXXXXXXXXX
 
-**Note**: The default phone number format is XXXXXXXXXX, and you don't need to provide blank array `phoneRules: []`.
+You can use more as per your requirements.
+
+**Note**: The default phone number format is XXXXXXXXXX, and you don't need to provide a blank array `phoneRules: []`.
 
 ### Use of combine
 By using `combine`, you can merge two fields into a single field. It combines field values using specified operators.
