@@ -2,55 +2,6 @@
 import { preFields } from './fields_module.js';
 import { approvedArray } from './utils.js';
 
-// Example fields array for testing
-// const ff = [
-//     {
-//         name: 'user-email',
-//         type: 'email',
-//         value: 'anmol.wdev@gmail.com'
-//     },
-//     {
-//         name: 'password',
-//         type: 'password',
-//         value: '123456'
-//     },
-//     {
-//         name: 'confirmPass',
-//         type: 'password',
-//         value: '123456'
-//     },
-//     {
-//         name: 'firstname',
-//         type: 'text',
-//         value: 'Anmol'
-//     },
-//     {
-//         name: 'lastname',
-//         type: 'text',
-//         value: 'Kumar'
-//     },
-//     {
-//         name: 'dob',
-//         type: 'date',
-//         value: '1996-08-10'
-//     },
-//     {
-//         name: 'user_gen',
-//         type: 'radio',
-//         value: 'male'
-//     },
-//     {
-//         name: 'user_comfirm',
-//         type: 'radio',
-//         value: 'yes'
-//     },
-//     {
-//         name: 'user_othername',
-//         type: 'text',
-//         value: ''
-//     }
-// ]
-
 /**
  * Prioritizes fields based on predefined priority fields.
  * 
@@ -67,14 +18,12 @@ function prioritizer(fields = [], { strict = false, augment }) {
 
     // Add augmented fields to priority if provided
     approvedArray(augment) && pre_priority_fields.push(...augment.map(p => new RegExp(p, 'i')));
-    
-    // Filter fields into priority and non-priority based on name
-    const priority = fields.filter(f => pre_priority_fields.some(regex => regex.test(f.name)) && !/other/i.test(f.name));
-    let non_priority = fields.filter(f => ![...pre_priority_fields].some(regex => regex.test(f.name)) || /other/i.test(f.name));
 
-    // If strict mode is enabled, further filter non-priority fields by type
-    const stricter = strict && non_priority.filter(f => pre_priority_fields.some(regex => regex.test(f.type)));
-    approvedArray(stricter) && priority.push(...stricter) && (non_priority = non_priority.filter(f => !stricter.includes(f)));
+    // Filter fields into priority and non-priority based on name
+    const priority_ext = fields.filter(f => pre_priority_fields.some(regex => regex.test(f.name)));
+    const priority = priority_ext.filter(f => !/other/i.test(f.name));
+    const non_priority = fields.filter(f => !priority.includes(f) || /other/i.test(f.name));
+
     // console.log(`Prioritizer completed in ${performance.now() - start} milliseconds`);
 
     // Return the prioritized and non-prioritized fields

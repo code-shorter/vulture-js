@@ -20,7 +20,7 @@
 ```
 **NOTE**: `vulture-js`  is currently available only for the browser, you can only connect to it with the help of CDN script. Sometimes `@latest` not work as expected, so we recommend using the latest version.
 
-**Latest Version**: *v1.1.8*
+**Latest Version**: *v1.2.0*
 
 ---
 
@@ -58,12 +58,14 @@ forms.forEach((f, i) => {
 ---
 
 ## 🎯 Options
-| Option          | Type    | Default   | Description |
-|-----------------|---------|-----------|-------------|
-| `strict`        | Boolean | `false`   | Enables strict validation rules. |
-| `augment`       | Array   | `null`    | Enables adding more fields to the priority list. |
-| `render_error`  | Boolean | `true`    | Displays error messages below invalid fields. |
-| `minmax`        | Array   | `[2,50]`  | Set minimum & maximum length limit in fields containing `name` |
+| Option          | Type    | Default    | Description |
+|-----------------|---------|------------|-------------|
+| `strict`        | Boolean | `false`    | Enables strict validation rules. |
+| `augment`       | Array   | `null`     | Enables adding more fields to the priority list. |
+| `render_error`  | Boolean | `true`     | Displays error messages below invalid fields. |
+| `minmax`        | Array   | `[2,50]`   | Set minimum & maximum length limit in fields containing `name` |
+| `phoneRules`    | Array   | `[]`       | Set rules to validate phone number |
+| `combine`       | Object  | No default | Set rules to validate phone number |
 
 ---
 
@@ -84,13 +86,125 @@ form.addEventListener("submit", (e) => {
 ```
 
 ### Use of minmax
-By using `minmax` you can set minimum and maximum length limit in those fields which containting `name` (e.g. `fullname`, `username`, `first_name`).
+By using `minmax`, you can set the minimum and maximum length limits for fields containing `name` (e.g., `fullname`, `username`, `first_name`).
 
 **NOTE**: `minmax` does not work in `strict: false`.
 
 ```js
 const { fields, errors } = vulture.talon({ strict: true, render_error: true, minmax: [3, 25] });
 ```
+
+### Use of phoneRules
+By using `phoneRules`, you can set the format of phone numbers.
+
+
+```js
+const { fields, errors } = vulture.talon({ strict: true, render_error: true, phoneRules: ["+", "space"] });
+```
+
+These are the options that are used to set the format of phone number:
+`[]` - Phone number format is XXXXXXXXXX
+`["+"]` - Phone number format is +XX XXXXXXXXXX
+`["spaces"]` - Phone number format is XXX XXX XXXX
+`["hyphens"]` - Phone number format is XXX-XXX-XXXX
+`["dots"]` - Phone number format is XXX.XXX.XXXX
+`["+", "spaces"]` - Phone number format is +XX XXX XXXX XXX, XXX XXXX XXX, +XXXXXXXXXXXX, XXXXXXXXXX
+// You can use more as your requirements
+
+**Note**: The default phone number format is XXXXXXXXXX, and you don't need to provide blank array `phoneRules: []`.
+
+### Use of combine
+By using `combine`, you can merge two fields into a single field. It combines field values using specified operators.
+
+```js
+    const { fields, errors } = vulture.talon({
+        strict: true,
+        render_error: true,
+        combine: {
+            fieldsGroup: [
+            { name: 'first_name', type: 'text', value: 'Anmol' },
+            { name: 'last_name', type: 'text', value: 'Shrivastav' },
+            { name: 'cu_code', type: 'text', value: '+91' },
+            { name: 'phone_number', type: 'text', value: '917049XXXX' },
+            { name: 'email', type: 'email', value: 'example123@example.com' }
+            ],
+            fieldsToCombine: [
+                ['cu_code', 'phone_number'],
+                ['first_name', 'last_name']
+            ],
+            attributes: [
+                { name: 'phone_number', type: 'text' },
+                { name: 'full_name', type: 'text' }
+            ],
+            method: 'space'
+        }
+    });
+```
+
+```js
+    // Output
+    [
+        { name: 'email', type: 'email', value: 'example123@example.com' },
+        { name: 'phone_number', type: 'text', value: '+91 917049XXXX' },  
+        { name: 'full_name', type: 'text', value: 'Anmol Shrivastav' }    
+    ]
+```
+
+### Characteristics of Combine
+
+Combine `first_name` and `last_name` into `full_name` with space as a separator. This can be useful when you want to combine two fields into a single field for form submission or display purposes.
+
+The `combine` property should be an object with `fieldsToCombine`, `attributes`, and `method` properties.
+
+- `fieldsToCombine` is an array of field names to combine.
+- `attributes` is an array of objects, each representing an attribute to set for the combined field.
+    - `name` specifies the name of the attribute to set.
+    - `type` specifies the type of attribute to set (e.g., 'text', 'hidden', 'checkbox', etc.).
+- `method` specifies the method to combine the fields (Methods are: 'space', 'hyphen', 'dot', 'underscore') (default is space).
+
+### Custom Error Messages
+
+By using `vulture.defError()`, you can define custom error messages for specific fields. This allows you to provide more meaningful feedback to users.
+
+```js
+vulture.defError([
+    { field: "first_name", required: "Please enter your name", min: "Enter at least 3 characters", max: "You cannot enter more than 25 characters" },
+    { field: "email", not_valid: "Please enter a valid email address" },
+    { field: "profession", required: "Please select your profession" },
+    { field: "terms", required: "You must agree to the terms and conditions" }
+]);
+```
+
+This method allows you to specify custom error messages for different validation rules such as `required`, `min`, `max`, and `not_valid`.
+
+- `field`: The name of the field.
+- `required`: Message when the field is required but not filled.
+- `min`: Message when the field value is below the minimum length (only work in fields containing `name`).
+- `max`: Message when the field value exceeds the maximum length (only work in fields containing `name`).
+- `not_valid`: Message when the field value does not match the expected format.
+
+Example usage:
+
+```js
+vulture.connect("myForm");
+
+// Define error 
+vulture.defError([
+    { field: "first_name", required: "Please enter your name" },
+    { field: "email", not_valid: "Please enter a valid email address" },
+    { field: "terms", required: "You must agree to the terms and conditions" }
+]);
+
+const form = document.querySelector("#myForm");
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const { fields, errors } = vulture.talon({ strict: true, render_error: true });
+
+    if (errors) return console.error(errors);
+    console.log(fields);
+});
+```
+
 
 ### How to directly store to the database ?
 By using `vulture.formatter()` you can send directly store to the database without any additional code.
@@ -118,7 +232,7 @@ form.addEventListener("submit", (e) => {
         // }
 
     // Send data to your backend
-    fetch('https://api.you-backend-url.com/user-form', {
+    fetch('https://api.you-domain.com/user-form', {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
@@ -129,6 +243,28 @@ form.addEventListener("submit", (e) => {
     .then(data => console.log(data))
     .catch(err => console.error(err));
 });
+```
+
+### How to Display error after validation ?
+By using `vulture.error()`, you can display error messages in your form.
+
+**Note**: This method only displays error messages; it does not stop the process by itself.
+
+Useful for throwing errors after checking email, username, and ID.
+
+```js
+    const users = [{
+        first_name: 'Anmol',
+        last_name: 'Shrivastav',
+        email: 'codeshorter@gmail.com'
+    }]
+    const ext_user = users.find(user => user.email === data.email);
+
+    // vulture.error('field name', "Error you want to display")
+    if (ext_user) {
+        vulture.error('email', "Email is already exist.")
+        return; // For stoping further process
+    };
 ```
 
 ## 📌 Example HTML Form
