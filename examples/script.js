@@ -3,7 +3,7 @@ vulture.connect("user-form"); // Auto detect form by ID or class name (Write wit
 vulture.defError([
     { field: "first_name", required: "Please enter your name", min: "Enter at least 3 characters", max: "You can not enter more than 25 characters" },
     { field: "email", not_valid: "Please enter a valid email address" },
-    { field: "proffession", required: "Please select your profession" },
+    { field: "profession", required: "Please select your profession" },
     { field: "terms", required: "You must agree to the terms and conditions" }
 ]);
 
@@ -16,7 +16,7 @@ form.addEventListener("submit", (e) => {
     // Get form fields and errors using talon method
     const { fields, errors } = vulture.talon({
         strict: true,
-        augment: ['proffession'],
+        augment: ['profession'],
         render_error: true,
         minmax: [3, 25],
         phoneRules: ["+", "spaces"],
